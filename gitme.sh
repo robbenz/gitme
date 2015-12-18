@@ -9,13 +9,23 @@ REPOS=(
 
 MOVE="Moving to next REPO... \n" 
 
-echo what ya wanna do?
+tput setaf 3;echo What ya wanna do? You can say "push" "pull" "commit" "ftp push" or "status"; tput sgr0
 
 read input
 
 if [ $input =  "commit" ]
 then
-    for i in "${REPOS[@]}"
+   tput setaf 1;echo "Do you want a unique commit message? [y/n]";tput sgr0 ans
+   if [ $ans = "y" ] 
+   then 
+     for i in "${REPOS[@]}"
+    do
+   git add . -A
+   read -p "Commit description: " desc  
+   git commit -m "$desc"
+   done 
+       else 
+           for i in "${REPOS[@]}"
     do
         cd "$i"
         tput setaf 6;pwd;tput sgr0 
@@ -24,7 +34,7 @@ then
         tput setaf 2;echo  $MOVE;tput sgr0 
         sleep 1
     done 
-
+    fi 
 elif [ $input = "push" ] || [ $input = "pull" ] || [ $input = "ftp push" ] || [ $input = "status" ]
     then
         for i in "${REPOS[@]}"
