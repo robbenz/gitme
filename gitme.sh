@@ -26,6 +26,7 @@ then
             git add . -A
             read -p "Commit description: " desc  
             git commit -m "$desc"
+            tput setaf 2;echo  $MOVE;tput sgr0 
         done 
     else 
         for i in "${REPOS[@]}"
