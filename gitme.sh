@@ -1,11 +1,10 @@
 #!/bin/bash -e
 
 REPOS=( 
-/Users/your/git/repo1
-/Users/your/git/repo2
-/Users/your/git/repo3
-/Users/your/git/repo4
-/Users/your/git/repo5
+/Users/you/gitrepo1
+/Users/you/gitrepo2
+/Users/you/gitrepo3
+/Users/you/gitrepo4
 )
 
 MOVE="Moving to next REPO... \n" 
@@ -18,7 +17,7 @@ if [ $input =  "commit" ]
 then
     for i in "${REPOS[@]}"
     do
-        cd $i
+        cd "$i"
         tput setaf 6;pwd;tput sgr0 
         git add . -A
         git commit -m "autocommit backup point"
@@ -26,13 +25,15 @@ then
         sleep 1
     done 
 
-else 
-for i in "${REPOS[@]}"
+elif [ $input = "push" ] || [ $input = "pull" ] || [ $input = "ftp push" ] || [ $input = "status" ]
+    then
+        for i in "${REPOS[@]}"
 do
-    cd $i
+    cd "$i"
     tput setaf 6;pwd;tput sgr0 
     git $input 
     tput setaf 2;echo  $MOVE;tput sgr0 
     sleep 1
     done 
+else tput setaf 1;echo "You have zero friends";tput sgr0 
 fi
