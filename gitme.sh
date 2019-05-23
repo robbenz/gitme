@@ -26,7 +26,7 @@ then
             git add . -A
             read -p "Commit description: " desc  
             git commit -m "$desc"
-            tput setaf 2;echo  $MOVE;tput sgr0 
+            tput setaf 2;echo -e $MOVE;tput sgr0 
             sleep 1
         done 
     else 
@@ -36,7 +36,7 @@ then
             tput setaf 6;pwd;tput sgr0 
             git add . -A
             git commit -m "autocommit backup point"
-            tput setaf 2;echo  $MOVE;tput sgr0 
+            tput setaf 2;echo -e $MOVE;tput sgr0 
             sleep 1
         done
     fi 
@@ -47,7 +47,7 @@ do
     cd "$i"
     tput setaf 6;pwd;tput sgr0 
     git $input 
-    tput setaf 2;echo  $MOVE;tput sgr0 
+    tput setaf 2;echo -e $MOVE;tput sgr0 
     sleep 1
     done 
 else tput setaf 1;echo "You have zero friends";tput sgr0 
